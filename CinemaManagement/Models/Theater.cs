@@ -6,15 +6,14 @@ public class Theater
 {
     [Key] public int Id { get; set; }
     [Required] public string Name { get; set; }
-    [Required] public List<Auditorium> Auditoria { get; set; }
+    [Required] public ICollection<Auditorium> Auditoria { get; set; } = new List<Auditorium>();
 
     public Theater()
     {
     }
 
-    public Theater(string name, List<Auditorium> auditoria)
+    public Theater(string name)
     {
         Name = name;
-        Auditoria = auditoria;
     }
 }

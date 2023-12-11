@@ -1,20 +1,25 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cinema.Models;
 
 public class Ticket
 {
-    [Required] public int Id { get; set; }
-    [Required] public Showtime Showtime { get; set; }
-    [Required] public Seat Seat { get; set; }
+    [Key] public int Id { get; set; }
+    [Required, ForeignKey("Showtime")] public int ShowtimeId { get; set; }
+    [Required, ForeignKey("Seat")] public int SeatId { get; set; }
+    public bool IsConfirmed { get; set; }
 
     public Ticket()
     {
+
     }
 
-    public Ticket(Showtime showtime, Seat seat)
+    public Ticket(int showtimeId, int seatId)
     {
-        Showtime = showtime;
-        Seat = seat;
+        ShowtimeId = showtimeId;
+        SeatId = seatId;
     }
 }
+     
+     
