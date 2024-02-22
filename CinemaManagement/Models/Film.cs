@@ -9,6 +9,7 @@ public class Film
    [Required] public string Description { get; set; }
    [Required] public string Genre { get; set; }
    [Required] public int Duration { get; set; }
+   public string Image { get; set; }
 
    public Film()
    {
@@ -20,5 +21,14 @@ public class Film
       Description = description;
       Genre = genre;
       Duration = duration;
+   }
+
+   public Film(string title, string description, string genre, int duration, string image)
+   {
+      Title = title;
+      Description = description;
+      Genre = genre;
+      Duration = duration;
+      Image = image;
    }
 }

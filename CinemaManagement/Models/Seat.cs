@@ -5,7 +5,7 @@ namespace Cinema.Models;
 
 public class Seat
 {
-    [Key] public int SeatNumber { get; set; }
+    [Key] public int Id { get; set; }
 
     [Required, StringLength(1), RegularExpression("[A-Z]", ErrorMessage = "Only A-Z is allowed")]
     public string Row { get; set; } // A-Z
@@ -23,9 +23,9 @@ public class Seat
     {
     }
 
-    public Seat(int seatNumber, string row, string column, int auditoriumId, int? reservedByUserId)
+    public Seat(int id, string row, string column, int auditoriumId, int? reservedByUserId)
     {
-        SeatNumber = seatNumber;
+        Id = id;
         Row = row;
         Column = column;
         AuditoriumId = auditoriumId;

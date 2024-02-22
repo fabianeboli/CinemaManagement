@@ -1,17 +1,23 @@
 using Cinema.Endpoints;
 using Cinema.Models;
 using Microsoft.EntityFrameworkCore;
+var x = 5;
+var y = x + 5;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Learwn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<CinemaDb>(opt => opt.UseInMemoryDatabase("Cinema"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
 builder.Services.AddSwaggerGen();
+
+if (builder.Environment.IsDevelopment())
+{
+    // builder.Services.AddReverseProxy();
+}
 
 var app = builder.Build();
 
@@ -20,6 +26,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+    // app.MapForwarder("{**catch-all}", "http://localhost:3333");
 }
 
 app.UseHttpsRedirection();
@@ -36,8 +44,14 @@ var dbTheaters = new[]
 
 var film = new[]
 {
-    new Film("Film 1", "Description 1", "Comedy", 100),
-    new Film("Film 2", "Description 2", "Drama", 115)
+    new Film("High and Low", "Description 1", "Comedy", 100,
+        "https://m.media-amazon.com/images/M/MV5BOTI4NTNhZDMtMWNkZi00MTRmLWJmZDQtMmJkMGVmZTEzODlhXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_.jpg"),
+    new Film("Still life", "Description 2", "Drama", 115,
+        "https://m.media-amazon.com/images/M/MV5BOWEzMGIyNWUtZTMzMS00NGY2LTllZWYtMjgwZjRkYWY2NTFkXkEyXkFqcGdeQXVyMTI3ODAyMzE2._V1_.jpg"),
+    new Film("Hiroshima", "Description 3", "War", 95,
+        "https://m.media-amazon.com/images/M/MV5BNGE1OTFjOTEtM2M2OS00NWRmLWE0NWYtNjFlMzljYmJhNzUwXkEyXkFqcGdeQXVyNjc5NjEzNA@@._V1_.jpg"),
+    new Film("Onibaba", "Description 4", "Horror", 183,
+        "https://m.media-amazon.com/images/M/MV5BMWRiYmNmNTEtM2FlNC00ODRlLWFiMmQtYmNlNzgxY2MzMzNkL2ltYWdlXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_.jpg")
 };
 
 var auditoriums = new[]
@@ -49,6 +63,11 @@ var auditoriums = new[]
 var showtimes = new[]
 {
     new Showtime(film[0], DateTime.Now, auditoriums[0]),
+    new Showtime(film[0], new DateTime(new DateOnly(2024, 10, 12), new TimeOnly(17, 0, 0), DateTimeKind.Utc), auditoriums[0]),
+    new Showtime(film[0], new DateTime(new DateOnly(2024, 10, 12), new TimeOnly(20, 20, 0), DateTimeKind.Utc), auditoriums[0]),
+    new Showtime(film[0], new DateTime(new DateOnly(2024, 10, 14), new TimeOnly(17, 0, 0), DateTimeKind.Utc), auditoriums[0]),
+    new Showtime(film[0], new DateTime(new DateOnly(2024, 10, 15), new TimeOnly(17, 0, 0), DateTimeKind.Utc), auditoriums[0]),
+ 
     new Showtime(film[1], DateTime.Now, auditoriums[1])
 };
 
@@ -96,7 +115,5 @@ cinemaDb.Tickets.AddRange(tickets);
 cinemaDb.Users.AddRange(users);
 cinemaDb.SaveChanges();
 
-
-FilmEndpoints.Map(app);
 app.MapControllers();
 app.Run();
