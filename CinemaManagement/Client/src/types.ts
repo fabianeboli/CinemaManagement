@@ -18,18 +18,22 @@ export type FilmDetails = {
 
 export type Showtime = {
   id: number;
-  auditorium: {
-    name: string;
-    theaterId: number;
-    seats: Seat[];
-  }
+  film: Film;
+  auditorium: Auditorium;
   date: Date;
 }
 
-export type Seat = {
+export type Auditorium = {
   id: number;
-  row: number;
-  column: number;
-  ReservedAt: Date;
-  ReservedBy: number;
+  name: string;
+  theaterId: number;
+  seats: TSeat[];
+}
+
+export type TSeat = {
+  id: number;
+  row: string;
+  column: string;
+  reservedAt: Date;
+  reservedByUserId: number;
 }

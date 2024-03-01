@@ -1,26 +1,7 @@
 <script setup lang="ts">
-// const {isFetching, error, data} = useFetch("http://localhost:5016/api/films").get().json();
-
-const filmsMockup: any[] = [{
-  id: 1,
-  title: "Mockup #1",
-  description: "test 231 geadasdaerrt asad",
-  genre: "Drama",
-  duration: 125,
-  image: "sadsadag"
-},
-  {
-    id: 2,
-    title: "Mockup #2312313211",
-    description: "etqafdadsfdsaf Lorem ipsum babas ssdoadoao qweq absda " +
-      "fdewqr gda erwrwr asdadsa asdas afasff " +
-      "fffffffffff eeeeeeeeeee eeeeeeeeeeeer rrrrrrrrrrrr",
-    duration: 99,
-    genre: "Comedy",
-    image: ""
-  }];
 
 const {isFetching, error, data} = useFetch("http://localhost:5016/api/Films").get().json();
+
 </script>
 
 

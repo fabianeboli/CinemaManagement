@@ -27,7 +27,10 @@ namespace CinemaManagement.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Showtime>> GetShowtime(int id)
         {
-            var showtime = await _context.Showtimes.FindAsync(id);
+            var showtime = await _context.Showtimes
+                .Include(s => s.Film)
+                .Include(s => s.Auditorium)
+                .FirstAsync(s => s.Id == id);
 
             if (showtime == null)
             {
@@ -36,6 +39,23 @@ namespace CinemaManagement.Controllers
 
             return showtime;
         }
+
+        // GET: api/Showtime/5/Seats
+        [HttpGet("{id}/Seats")]
+        public async Task<ActionResult<IEnumerable<Seat>>> GetSeatsShowtime(int id)
+        {
+             var seats = await _context.Seats
+                .Where(s => s.AuditoriumId == id)
+                .ToListAsync();
+
+            if (seats == null)
+            {
+                return NotFound();
+            }
+
+            return seats;
+        }
+
 
         // PUT: api/Showtime/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

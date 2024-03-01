@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Error: typeof import('./components/Utils/Error.vue')['default']
     Film: typeof import('./components/Film.vue')['default']
+    FilmDate: typeof import('./components/FilmDate.vue')['default']
     FilmDetail: typeof import('./components/FilmDetail.vue')['default']
     FilmDetails: typeof import('./components/Modals/FilmDetails.vue')['default']
     Navbar: typeof import('./components/Navbar.vue')['default']
@@ -16,6 +17,10 @@ declare module 'vue' {
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Seat: typeof import('./components/Showtime/Seat.vue')['default']
+    Seats: typeof import('./components/Showtime/Seats.vue')['default']
+    Showtime: typeof import('./components/Showtime.vue')['default']
+    ShowtimeDetails: typeof import('./components/Showtime/ShowtimeDetails.vue')['default']
     SignIn: typeof import('./components/Modals/SignIn.vue')['default']
     SignUp: typeof import('./components/Modals/SignUp.vue')['default']
     Spinner: typeof import('./components/Utils/Spinner.vue')['default']

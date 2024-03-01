@@ -3,3 +3,8 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+.idea/
+CinemaManagement/Client/.vscode
+CinemaManagement/Client/vite.config.ts.timestamp-1702308185864-6ec12d0514e05.mjs
+CinemaManagement/obj
+pnpm-lock.yaml

@@ -5,8 +5,7 @@ import {useFilmDetailsStore} from "~/stores/filmDetails";
 
 const store = useFilmDetailsStore();
 const {isFetching, error, data} = useFetch(`http://localhost:5016/api/FilmsShowtimes/${store.id}`).get().json();
-console.log(data);
-const selectedDate = ref<string>("");
+
 </script>
 
 <template>
@@ -38,13 +37,10 @@ const selectedDate = ref<string>("");
           <div v-else>
             <ul>
               <li class="flex my-8 gap-x-10" v-for="({id, date, auditorium}) in data" :key="id">
-                <div clas="">
+                <div>
                   <p class="font-semibold">{{auditorium.name}}</p> 
                   <div class="flex items-center mt-1">
-                    <div class="i-carbon-calendar mr-0.5"></div>
-                    <p class="text-[#888]">{{useDateFormat(new Date(date), 'DD.MM.YY').value}}</p>
-                    <div class="i-carbon-time mx-0.5"></div> 
-                    <p class="text-[#888]">{{useDateFormat(new Date(date), 'HH:MM').value}}</p>
+                   <FilmDate :date="date" :direction="'row'"/>
                   </div>
                 </div>
                 <RouterLink :to="`/showtime/${id}`">
