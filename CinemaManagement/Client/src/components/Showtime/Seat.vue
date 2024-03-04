@@ -1,6 +1,4 @@
 <script setup lang='ts'>
-import { set } from 'nprogress';
-
 const { row, column, reservedAt, reservedByUserId } = defineProps<{
   row: string;
   column: string;
@@ -8,8 +6,8 @@ const { row, column, reservedAt, reservedByUserId } = defineProps<{
   reservedByUserId: number;
 }>();
 
+const isHovered = ref<boolean>(false);
 const isReserved = ref<boolean>(Boolean(reservedByUserId));
-
 const isClicked = ref<boolean>(false);
 
 const setSeatColor = () => {
@@ -26,18 +24,16 @@ const handleClick = () => {
 </script>
 
 <template>
-  <div @click="handleClick">
-    <div class="relative bottom-0.5 left-1">
+  <div class="my-1 mx-0.5" @click="handleClick" @mouseover="isHovered = true " @mouseleave="isHovered = false">
+    <div class="relative left-2.5">
       <div
-        class="absolute rounded-sm bg-red-700 opacity-0 hover:opacity-100 transition-opacity text-white text-xs z-100 text-black hover:cursor-pointer">
+        class="absolute rounded-md bg-red-700 opacity-0  transition-opacity text-white text-sm p-1 z-100 text-black"
+        :class="{ 'opacity-100 hover:cursor-pointer': isHovered && !isReserved}">
         {{ row }} {{ column }}
       </div>
     </div>
-
-    <div class="i-ic:baseline-chair w-1.5em h-1.5em " :class="setSeatColor()">
+    <div class="i-ic:baseline-chair w-3em h-3em"            :class="setSeatColor()">
     </div>
-    <div :class="{ active: true }"></div>
-
   </div>
 </template>
 

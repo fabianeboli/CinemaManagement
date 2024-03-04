@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-import { formatDate } from '@vueuse/core';
 import { Showtime } from '~/types';
 
 const { id } = defineProps<{
@@ -10,12 +9,18 @@ const { data, error, isFetching } = await useFetch(`http://localhost:5016/api/Sh
 const showtime: Showtime = data.value as Showtime;
 console.log(data.value);
 
+const { data:theaterData } = await useFetch(`http://localhost:5016/api/Theaters/${showtime.auditorium.theaterId}`).get().json();
+
 </script>
 
 <template>
-  <div class="flex justify-evenly">
-    {{ showtime.film.title }}
-    <div>
+  <div class="flex flex-col items-center justify-evenly">
+    <div class="flex items-baseline gap-x-20 mb-15">
+      <div>
+        <h1 class="font-bold text-xl"> {{ showtime.film.title }} </h1>
+        <h3> {{ theaterData.name }} </h3>
+        <h3> {{ showtime.auditorium.name }} </h3>
+      </div>
       <FilmDate :date="showtime.date" :direction="'row'"/>
     </div>
     <Seats/>

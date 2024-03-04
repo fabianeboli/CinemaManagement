@@ -2,7 +2,6 @@
 import {useModal} from "~/composables/useModal";
 import SignIn from "~/components/Modals/SignIn.vue";
 import SignUp from "~/components/Modals/SignUp.vue";
-
 const modal = useModal();
 
 </script>
@@ -21,7 +20,6 @@ const modal = useModal();
         <a class="hover:font-bold cursor-pointer hover:text-red-7" @click="modal.openModal(SignUp)">Sign up</a>
       </div>
     </div>
-    <RouterLink to="/[...all]">404</RouterLink>
     <Teleport to="#modal">
       <Transition>
         <component :is="modal.component.value"

@@ -30,6 +30,7 @@ namespace CinemaManagement.Controllers
             var showtime = await _context.Showtimes
                 .Include(s => s.Film)
                 .Include(s => s.Auditorium)
+                .ThenInclude(a => a.TheaterId)
                 .FirstAsync(s => s.Id == id);
 
             if (showtime == null)
@@ -46,6 +47,7 @@ namespace CinemaManagement.Controllers
         {
              var seats = await _context.Seats
                 .Where(s => s.AuditoriumId == id)
+                .OrderByDescending(s => s.Id)
                 .ToListAsync();
 
             if (seats == null)
