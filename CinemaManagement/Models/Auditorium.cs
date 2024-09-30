@@ -7,7 +7,8 @@ public class Auditorium
 {
     [Key] public int Id { get; set; }
     [Required] public string Name { get; set; }
-    [Required, ForeignKey("Theater")] public int TheaterId { get; set; }
+    [Required, ForeignKey(nameof(Theater))] public int TheaterId { get; set; }
+    public Theater Theater { get; set; }
     [Required] public ICollection<Seat> Seats { get; set; } = new List<Seat>();
 
     public Auditorium()

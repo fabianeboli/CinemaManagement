@@ -11,6 +11,8 @@ console.log(data.value);
 
 const { data:theaterData } = await useFetch(`http://localhost:5016/api/Theaters/${showtime.auditorium.theaterId}`).get().json();
 
+
+
 </script>
 
 <template>
@@ -18,8 +20,8 @@ const { data:theaterData } = await useFetch(`http://localhost:5016/api/Theaters/
     <div class="flex items-baseline gap-x-20 mb-15">
       <div>
         <h1 class="font-bold text-xl"> {{ showtime.film.title }} </h1>
-        <h3> {{ theaterData.name }} </h3>
-        <h3> {{ showtime.auditorium.name }} </h3>
+        <h3 class="text-stn"> {{ theaterData.name }} </h3>
+        <h3 class="text-stn"> {{ showtime.auditorium.name }} </h3>
       </div>
       <FilmDate :date="showtime.date" :direction="'row'"/>
     </div>

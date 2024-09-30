@@ -1,8 +1,6 @@
 using Cinema.Endpoints;
 using Cinema.Models;
 using Microsoft.EntityFrameworkCore;
-var x = 5;
-var y = x + 5;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -103,8 +101,8 @@ var seats = new[]
 
 var tickets = new[]
 {
-    new Ticket(1, 1),
-    new Ticket(1, 2)
+    new Ticket(1, [seats[0]]),
+    new Ticket(1, [seats[1], seats[2]])
 };
 
 cinemaDb.Theaters.AddRange(dbTheaters);

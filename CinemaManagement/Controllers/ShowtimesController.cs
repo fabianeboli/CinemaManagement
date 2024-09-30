@@ -30,7 +30,7 @@ namespace CinemaManagement.Controllers
             var showtime = await _context.Showtimes
                 .Include(s => s.Film)
                 .Include(s => s.Auditorium)
-                .ThenInclude(a => a.TheaterId)
+                    // .ThenInclude(a => a.Theater)
                 .FirstAsync(s => s.Id == id);
 
             if (showtime == null)
