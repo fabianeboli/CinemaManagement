@@ -1,20 +1,29 @@
 <script setup lang='ts'>
 import { Showtime } from "~/types";
+import {useModal} from "#ui/composables/useModal";
+import {onMounted} from "vue";
+import {useRoute} from "#app";
+import ShowtimeDetails from "~/components/Showtime/ShowtimeDetails.vue";
+import Spinner from "~/components/Utils/Spinner.vue";
 
 
 const { id } = useRoute().params;
-
+const modal = useModal();
+onMounted(() => {
+  modal.close();
+})
 </script>
 
 <template>
-  <Suspense timeout="0">
+  <!-- <Suspense timeout="0">
     <template #default>
-      <ShowtimeDetails :id="id"/>
+      Test
     </template>
     <template #fallback>
-       <Spinner/>
+      <Spinner/>
     </template>
-  </Suspense>
+  </Suspense> -->
+  <ShowtimeDetails/>
   <!-- <div v-if="isFetching">
     <Spinner />
   </div>

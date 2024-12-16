@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import FilmDetails from "../components/Modals/FilmDetails.vue";
 import { useFilmDetailsStore } from "../stores/filmDetails";
-import CustomModal from "./Modals/ModalButton.vue";
+// import CustomModal from "./Modals/ModalButton.vue";
 
 
 const { id, title, genre, duration, description, image } = defineProps<{
@@ -19,7 +19,7 @@ const store = useFilmDetailsStore();
 
 <template>
   <div class="flex my-auto p-5 shadow rounded-sm">
-    <picture class="items-baseline max-w-[220px] w-full bg-cover bg-gray-300/40 mr-5">
+    <picture class="items-baseline max-w-[220px] w-2/3 bg-cover bg-gray-300/40 mr-5">
       <img class="self-baseline" :src="image"
         alt="https://m.media-amazon.com/images/M/MV5BOTI4NTNhZDMtMWNkZi00MTRmLWJmZDQtMmJkMGVmZTEzODlhXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_.jpg">
     </picture>
@@ -39,7 +39,6 @@ const store = useFilmDetailsStore();
         <button class="skew-button btn-grad"
           @click="modal.open(FilmDetails, { id, title, genre, image, description, duration })">Details</button>
       </div>
-
     </div>
   </div>
 </template>

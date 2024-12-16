@@ -1,5 +1,9 @@
 <script setup lang='ts'>
-const { row, column, reservedAt, reservedByUserId } = defineProps<{
+import { useBookingStore } from '~/stores/booking';
+
+const store = useBookingStore();
+const { row, column, reservedAt, reservedByUserId, id } = defineProps<{
+  id: string;
   row: string;
   column: string;
   reservedAt: Date;
@@ -24,15 +28,15 @@ const handleClick = () => {
 </script>
 
 <template>
-  <div class="my-1 mx-0.5" @click="handleClick" @mouseover="isHovered = true " @mouseleave="isHovered = false">
+  <div class="my-1 mx-0.5 relative" @click="!isReserved && store.reserveSeat(id)" :class="{'cursor-pointer': !isReserved}" @click="handleClick" @mouseover="isHovered = true"
+    @mouseleave="isHovered = false">
     <div class="relative left-2.5">
-      <div
-        class="absolute rounded-md bg-red-700 opacity-0  transition-opacity text-white text-sm p-1 z-100 text-black"
-        :class="{ 'opacity-100 hover:cursor-pointer': isHovered && !isReserved}">
-        {{ row }} {{ column }}
-      </div>
+      <div class="absolute rounded-md bg-red-700 opacity-0 transition-opacity text-white text-sm p-1"
+        :class="{ 'opacity-100 z-10': isHovered && !isReserved }"> {{ row }} {{ column }} </div>
     </div>
-    <div class="i-ic:baseline-chair w-3em h-3em"            :class="setSeatColor()"/>
+    <div class="relative">
+      <UIcon name="i-ic:baseline-chair" class="w-12 h-12 z-0" :class="setSeatColor()" />
+    </div>
   </div>
 </template>
 

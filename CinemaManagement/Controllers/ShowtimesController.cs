@@ -50,12 +50,12 @@ namespace CinemaManagement.Controllers
                 .OrderByDescending(s => s.Id)
                 .ToListAsync();
 
-            if (seats == null)
+            if (seats == null || seats.Count == 0)
             {
-                return NotFound();
+                return NotFound(new { message = "No seats found" });
             }
 
-            return seats;
+            return new JsonResult(seats);
         }
 
 

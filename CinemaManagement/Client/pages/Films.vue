@@ -4,9 +4,7 @@ import Spinner from "../components/Utils/Spinner.vue";
 import Film from "../components/Film.vue";
 
 const { status, error, data } = await useFetch("http://localhost:5016/api/Films");
-
 </script>
-
 
 <template>
   <div>

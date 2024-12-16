@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learwn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<CinemaDb>(opt => opt.UseInMemoryDatabase("Cinema"));
@@ -61,12 +61,13 @@ var auditoriums = new[]
 var showtimes = new[]
 {
     new Showtime(film[0], DateTime.Now, auditoriums[0]),
-    new Showtime(film[0], new DateTime(new DateOnly(2024, 10, 12), new TimeOnly(17, 0, 0), DateTimeKind.Utc), auditoriums[0]),
-    new Showtime(film[0], new DateTime(new DateOnly(2024, 10, 12), new TimeOnly(20, 20, 0), DateTimeKind.Utc), auditoriums[0]),
-    new Showtime(film[0], new DateTime(new DateOnly(2024, 10, 14), new TimeOnly(17, 0, 0), DateTimeKind.Utc), auditoriums[0]),
-    new Showtime(film[0], new DateTime(new DateOnly(2024, 10, 15), new TimeOnly(17, 0, 0), DateTimeKind.Utc), auditoriums[0]),
- 
-    new Showtime(film[1], DateTime.Now, auditoriums[1])
+    new Showtime(film[0], new DateTime(new DateOnly(2024, 12, 12), new TimeOnly(17, 0, 0), DateTimeKind.Utc), auditoriums[0]),
+    new Showtime(film[0], new DateTime(new DateOnly(2024, 12, 12), new TimeOnly(20, 20, 0), DateTimeKind.Utc), auditoriums[0]),
+    new Showtime(film[0], new DateTime(new DateOnly(2024, 12, 14), new TimeOnly(17, 0, 0), DateTimeKind.Utc), auditoriums[0]),
+    new Showtime(film[0], new DateTime(new DateOnly(2024, 12, 15), new TimeOnly(17, 0, 0), DateTimeKind.Utc), auditoriums[0]),
+    new Showtime(film[0], new DateTime(new DateOnly(2024, 12, 15), new TimeOnly(17, 0, 0), DateTimeKind.Utc), auditoriums[1]),
+    new Showtime(film[1], new DateTime(new DateOnly(2024, 12, 15), new TimeOnly(17, 0, 0), DateTimeKind.Utc), auditoriums[1]),
+    new Showtime(film[1], new DateTime(new DateOnly(2025, 01, 15), new TimeOnly(15, 0, 0), DateTimeKind.Utc) , auditoriums[1])
 };
 
 var users = new[]

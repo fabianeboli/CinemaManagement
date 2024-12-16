@@ -13,7 +13,6 @@ const { date, } = defineProps<{
     <div class="i-carbon-time mx-0.5"/> 
     <p class="text-[#888]">{{useDateFormat(new Date(date), 'HH:MM').value}}</p>
   </div>
- 
 </template>
 
 <style>
